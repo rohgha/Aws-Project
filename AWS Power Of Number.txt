@@ -1,6 +1,4 @@
 AWS power of number application
-
-
 1)What do we need?
 -a way to create / host a wabpage
 -a way to invoke the math functionality
