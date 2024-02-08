@@ -1,0 +1,137 @@
+AWS power of number application
+
+
+1)What do we need?
+-a way to create / host a wabpage
+-a way to invoke the math functionality
+-a way to do some path
+-somewhare to store / return the math result
+-a text editior(notepad)
+-aws account and access the console
+
+
+
+
+
+# A way to create webpage
+
+Amplify:- It is used to build and host websites
+          (But we will use a text editor(notepad) to create a simple index.html page)
+
+#search for the amplify service then just add the app name and drag and drop the zip files and just deploy it on the cloud and 
+#then just click on the domain link your application will execute on the browser successfully
+
+
+Lamda Function:- Codes that runs (serverlessly) upon some trigger
+#run code without thinking of the servers
+
+#create the lamda function author from scratch
+#given the function name 
+#use  python 3.9
+#paste  PowerOfMathFunction - Lambda-ORIGINAL.txt this code here
+#deploy it
+#after deploying test it
+#configure test event
+#create new event
+-eventname:- powerofnumber
+-add two values
+ base:value1
+ exponent:value2
+#save it
+#click on test
+#you can get your outout it means lambda function is working
+
+
+
+###A way to invoke the math functionality###
+
+API Gateway:- used to build http,rest and websocket APIs.
+
+
+#search the api gateway service
+#click on the rest api ->build
+#click on the resources option
+#method type =>post
+#click create method
+#click on the lambda function
+#name:-powerofnumber->ap-south-1
+#lambda function is create successfully
+#click on deploy api
+#stage name= dev
+#deploy
+#copy the url to invokde:-> https://cci623b3oa.execute-api.ap-south-1.amazonaws.com/dev
+( API GATEWAY URL:- https://cci623b3oa.execute-api.ap-south-1.amazonaws.com/dev)
+
+#go back to the resources
+#click on the post
+#click on test option
+#request body
+#add these two variables
+{
+"base":2,
+"exponent":4
+}
+#test
+#you will get your output
+
+
+
+
+
+####somewhere to store/ return the math result###
+###a way o handle permissions###
+
+
+
+##IAM###
+Set permissions on the execuion role for lambda
+
+###DynamoDB (Managed nosql database)###somewhere to store/ return the math result
+A key-value("NoSql database")
+
+
+
+
+#service dynamodb 
+#create table
+#partition key:-> ID
+#table_name:-> powerofnumber
+#click on table name
+#additional info
+#copy ARN :-> arn:aws:dynamodb:ap-south-1:082697479738:table/powerofnumber
+
+
+#go back to lambda function :-> powerofnumber
+#configuration tab 
+#click on permissions
+#click on role name-> click on that role
+#add permissions
+#create inline policy
+#click on json
+# Execution Role Policy JSON.txt ->copy that file and pase in json folder
+#in resource plave their arn link that you copied:->arn:aws:dynamodb:ap-south-1:082697479738:table/powerofnumber
+#policyname:-> powerofnumber
+
+#go back to the lambda function
+#click on the code
+#paste  PowerOfMathFunction - Lambda-FINAL.txt in python lambda function 
+#simply save it
+#deploy 
+#test
+#configure test event
+#save
+#test
+#you will get your application
+
+
+
+
+
+
+
+
+
+
+
+
+###CloudWatch###
